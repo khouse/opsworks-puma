@@ -5,6 +5,6 @@ set -e
 <% node[:deploy]['pact_broker'][:environment_variables].each do |k,v| %>
 export <%= k %>="<%= v %>"
 <% end %>
-
+touch /tmp/pact.pid
 cd /srv/www/pact_broker/current
-exec bundle exec rackup
+exec bundle exec rackup config.ru -P /tmp/pact.pid -D
