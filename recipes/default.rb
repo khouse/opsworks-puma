@@ -12,14 +12,14 @@ node[:deploy].each do |application, deploy|
   puma_config application do
     directory deploy[:deploy_to]
     environment deploy[:rails_env]
-    logrotate deploy[:puma][:logrotate]
-    thread_min deploy[:puma][:thread_min]
-    thread_max deploy[:puma][:thread_max]
-    workers deploy[:puma][:workers]
-    worker_timeout deploy[:puma][:worker_timeout]
-    restart_timeout deploy[:puma][:restart_timeout] || 120
-    exec_prefix deploy[:puma][:exec_prefix] || "bundle exec"
-    prune_bundler deploy[:puma][:prune_bundler]
+    logrotate false
+    thread_min 1
+    thread_max 1
+    workers 5
+    worker_timeout 120
+    restart_timeout 120
+    exec_prefix "bundle exec"
   end
 end
 
+runit_service 'pact_broker'
