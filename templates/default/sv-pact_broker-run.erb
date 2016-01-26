@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+<% node[:deploy]['pact_broker'][:environment_variables].each do |k,v| %>
+export <%= k %>="<%= v %>"
+<% end %>
+
+cd /srv/www/pact_broker/current
+exec bundle exec rackup

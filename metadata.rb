@@ -6,6 +6,7 @@ version     "0.0.5"
 
 depends "nginx"
 depends "deploy"
+depends 'runit'
 # depends "logrotate"
 
 recipe "opsworks-puma::deploy", "Used during the deploy lifecyle event to ensure nginx is configured properly"
