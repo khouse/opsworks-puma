@@ -82,21 +82,21 @@ define :puma_config, :owner => 'deploy', :group => 'nginx', :directory  => nil, 
     variables params
   end
 
-  service params[:name] do
-    supports :start => true, :stop => true, :restart => true
-    action :nothing
-  end
+  #service params[:name] do
+  #  supports :start => true, :stop => true, :restart => true
+  #  action :nothing
+  #end
 
-  template "#{params[:name]}" do
-    source "init.d.sh.erb"
-    path "/etc/init.d/#{params[:name]}"
-    cookbook "opsworks-puma"
-    mode "0755"
-    owner params[:owner] if params[:owner]
-    group params[:group] if params[:group]
-    variables params
-    notifies :start, "service[#{params[:name]}]", :delayed
-  end
+  #template "#{params[:name]}" do
+  #  source "init.d.sh.erb"
+  #  path "/etc/init.d/#{params[:name]}"
+  #  cookbook "opsworks-puma"
+  #  mode "0755"
+  #  owner params[:owner] if params[:owner]
+  #  group params[:group] if params[:group]
+  #  variables params
+  #  notifies :start, "service[#{params[:name]}]", :delayed
+  #end
 
   if params[:logrotate]
     logrotate_app params[:name] do
