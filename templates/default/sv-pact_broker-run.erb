@@ -7,4 +7,4 @@ export <%= k %>="<%= v %>"
 <% end %>
 touch /tmp/pact.pid
 cd /srv/www/pact_broker/current
-exec bundle exec rackup config.ru -P /tmp/pact.pid -D 2>&1 >> /tmp/pact.log
+exec bundle exec puma -C config/puma.rb
