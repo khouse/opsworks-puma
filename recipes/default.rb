@@ -24,4 +24,6 @@ end
 
 package 'runit'
 
-runit_service 'pact_broker'
+runit_service 'pact_broker' do
+  action [:enable, :start]
+end
