@@ -22,4 +22,6 @@ node[:deploy].each do |application, deploy|
   end
 end
 
+package 'runit'
+
 runit_service 'pact_broker'
